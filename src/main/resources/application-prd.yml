@@ -2,14 +2,21 @@ spring:
   datasource:
     url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
     username: ${PGUSER}
-    password: ${PGPASSORD}
-    driver-class-name: org.postgresql.Driver
+    password: ${PGPASSWORD}
   jpa:
     open-in-view: false
-    hibernate:
-      ddl-auto: create   # create na primeira vez e depois volte pra validate
-      dialect: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        ddl-auto: drop-and-create   # create na primeira vez e depois volte pra validate
+        temp:
+          use_jdbc_metadata_defaults: false
 
 
-#  spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL8Dialect
+#     username: ${PGUSER}
+  #    password: ${PGPASSWORD}
+#  url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+  #  spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL8Dialect
  # spring.jpa.properties.hibernate.dialect.format_sql = true
+  # connection.provider_class=com.zaxxer.hikari.hibernate.HikariConnectionProvider
